@@ -1,11 +1,11 @@
 ### 版本号 ###
 version=1.0-20210105-001
 
-# com.spring.security
+### com.spring.security ###
 SpringSecurity认证授权项目
 
 
-#理论
+### 理论 ###
 1. SpringSecurity本质是一个过滤器链（有很多过滤器）
 
 FilterSecurityInterceptor：方法级的权限过滤器，基本位于过滤链的最底部
@@ -32,15 +32,17 @@ PasswordEncoder
 第三种方式是：自定义编写实现类（企业常用）
 
 
-#实践
+### 实践 ###
 1. pom引入相关类
-	<!-- 引入springsecutiry认证授权 -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-security</artifactId>
-	</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
 
 2. 自定义编写实现类
 第一步，创建配置类，设置使用哪个userDetailsService实现类
 第二步，编写实现类，返回User对象，User对象有用户名密码和操作权限
+
+3. 整合MybatisPlus完成数据库操作
+
 

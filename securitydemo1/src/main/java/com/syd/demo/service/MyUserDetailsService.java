@@ -1,5 +1,9 @@
 package com.syd.demo.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.syd.demo.dao.UsersMapper;
+import com.syd.demo.entity.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -17,9 +21,19 @@ import java.util.List;
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
 
+    @Autowired
+    private UsersMapper usersMapper;
+
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        QueryWrapper<Users> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        Users users = usersMapper.selectOne(wrapper);
+        if(users == null){
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+
         List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
-        return new User("syd",new BCryptPasswordEncoder().encode("123456"),auths);
+        return new User(users.getUsername(),new BCryptPasswordEncoder().encode(users.getPassword()),auths);
     }
 }
