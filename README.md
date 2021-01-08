@@ -1,5 +1,5 @@
 ### 版本号 ###
-version=1.0-20210105-001
+version=1.0-20210108-001
 
 ### com.spring.security ###
 SpringSecurity认证授权项目
@@ -50,7 +50,7 @@ PasswordEncoder
 不需要认证可以访问
 
 做法：
-4.1.在配置类实现相关的配置
+在配置类实现相关的配置
  
 5. 基于角色或权限进行访问控制
 5.1 第一个方法hasAuthority方法（如果当前的主体具有指定的权限，有返回true，否则返回false）
@@ -68,3 +68,7 @@ PasswordEncoder
 5.4 第四个方法hasAnyRole角色（单个）
 在配置类配置当前访问地址有哪些权限
 在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
+
+6. 自定义403没有权限页面
+注意： http.exceptionHandling().accessDeniedPage("unauth.html");
+上面是个错误案例，没有加/，会报Caused by: java.lang.IllegalArgumentException: errorPage must begin with '/'异常
