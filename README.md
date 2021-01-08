@@ -45,4 +45,26 @@ PasswordEncoder
 
 3. 整合MybatisPlus完成数据库操作
 
+4. 实现自定义登录页
+自定义设置登录页
+不需要认证可以访问
 
+做法：
+4.1.在配置类实现相关的配置
+ 
+5. 基于角色或权限进行访问控制
+5.1 第一个方法hasAuthority方法（如果当前的主体具有指定的权限，有返回true，否则返回false）
+在配置类配置当前访问地址有哪些权限
+在UserDetailsService,要返回User对象设置权限
+
+5.2 第二个方法hasAnyAuthority(多个)
+在配置类配置当前访问地址有哪些权限
+在UserDetailsService,要返回User对象设置权限
+
+5.3 第三个方法hasRole角色（单个）
+在配置类配置当前访问地址有哪些权限
+在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
+
+5.4 第四个方法hasAnyRole角色（单个）
+在配置类配置当前访问地址有哪些权限
+在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）

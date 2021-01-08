@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("hello")
-    public String add(){
+    public String hello(){
         return "hello security";
+    }
+
+    @GetMapping("index")
+    public String index(){
+        return "hello index";
     }
 }
