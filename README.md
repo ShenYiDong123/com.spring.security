@@ -1,5 +1,8 @@
+### 说明 ###
+请下载下来，使用Node++打开md文件，格式才会正确
+
 ### 版本号 ###
-version=1.0-20210108-001
+version=1.0-20210111-001
 
 ### com.spring.security ###
 SpringSecurity认证授权项目
@@ -40,35 +43,42 @@ PasswordEncoder
 </dependency>
 
 2. 自定义编写实现类
-第一步，创建配置类，设置使用哪个userDetailsService实现类
-第二步，编写实现类，返回User对象，User对象有用户名密码和操作权限
+	2.1 第一步，创建配置类，设置使用哪个userDetailsService实现类
+	2.2 第二步，编写实现类，返回User对象，User对象有用户名密码和操作权限
 
 3. 整合MybatisPlus完成数据库操作
 
 4. 实现自定义登录页
-自定义设置登录页
-不需要认证可以访问
+	4.1 自定义设置登录页
+	4.2 不需要认证可以访问
 
 做法：
 在配置类实现相关的配置
  
 5. 基于角色或权限进行访问控制
-5.1 第一个方法hasAuthority方法（如果当前的主体具有指定的权限，有返回true，否则返回false）
-在配置类配置当前访问地址有哪些权限
-在UserDetailsService,要返回User对象设置权限
+	5.1 第一个方法hasAuthority方法（如果当前的主体具有指定的权限，有返回true，否则返回false）
+	在配置类配置当前访问地址有哪些权限
+	在UserDetailsService,要返回User对象设置权限
 
-5.2 第二个方法hasAnyAuthority(多个)
-在配置类配置当前访问地址有哪些权限
-在UserDetailsService,要返回User对象设置权限
+	5.2 第二个方法hasAnyAuthority(多个)
+	在配置类配置当前访问地址有哪些权限
+	在UserDetailsService,要返回User对象设置权限
 
 5.3 第三个方法hasRole角色（单个）
-在配置类配置当前访问地址有哪些权限
-在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
+	在配置类配置当前访问地址有哪些权限
+	在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
 
 5.4 第四个方法hasAnyRole角色（单个）
-在配置类配置当前访问地址有哪些权限
-在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
+	在配置类配置当前访问地址有哪些权限
+	在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
 
 6. 自定义403没有权限页面
-注意： http.exceptionHandling().accessDeniedPage("unauth.html");
-上面是个错误案例，没有加/，会报Caused by: java.lang.IllegalArgumentException: errorPage must begin with '/'异常
+	注意： http.exceptionHandling().accessDeniedPage("unauth.html");
+	上面是个错误案例，没有加/，会报Caused by: java.lang.IllegalArgumentException: errorPage must begin with '/'异常
+
+
+7. 认证授权注解使用
+	7.1 @PreAuthorize（用户具有某个角色，可以访问方法）
+	启动类开启注解、在controller上面使用注解设置角色、在UserDetailsService设置用户角色
+
+8. 实现登录退出功能
