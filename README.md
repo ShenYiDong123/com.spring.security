@@ -52,8 +52,8 @@ PasswordEncoder
 	4.1 自定义设置登录页
 	4.2 不需要认证可以访问
 
-做法：
-在配置类实现相关的配置
+	做法：
+	在配置类实现相关的配置
  
 5. 基于角色或权限进行访问控制
 	5.1 第一个方法hasAuthority方法（如果当前的主体具有指定的权限，有返回true，否则返回false）
@@ -64,11 +64,11 @@ PasswordEncoder
 	在配置类配置当前访问地址有哪些权限
 	在UserDetailsService,要返回User对象设置权限
 
-5.3 第三个方法hasRole角色（单个）
+	5.3 第三个方法hasRole角色（单个）
 	在配置类配置当前访问地址有哪些权限
 	在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
 
-5.4 第四个方法hasAnyRole角色（单个）
+	5.4 第四个方法hasAnyRole角色（单个）
 	在配置类配置当前访问地址有哪些权限
 	在UserDetailsService,要返回User对象设置权限（注意配置权限时，前面要加ROLE_）
 
@@ -82,3 +82,9 @@ PasswordEncoder
 	启动类开启注解、在controller上面使用注解设置角色、在UserDetailsService设置用户角色
 
 8. 实现登录退出功能
+
+9. 实现自动登录原理(cookie技术和security安全框架机制)
+	9.1 第一步认证成功cookie保存加密串，数据库保存加密串和用户信息字符串
+	9.2 第二步获取cookie信息与数据库进行比对，如果查询到对应信息，认证成功，可以登录
+	9.3 第二步是如何进行比对的，；浏览器->UsernamePasswordAuthenticationFilter->RemeberMeService->将token写入数据库DB
+	9.4 再次请求，RememberMeAuthenticationFilter->读取Cookie中的token——>TokenRepository->到数据库查找Token->UserDetailService
