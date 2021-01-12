@@ -25,7 +25,7 @@ import java.security.Security;
 import java.util.ArrayList;
 
 /**
- * 授权过滤器
+ * 认证过滤器
  */
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
