@@ -88,3 +88,9 @@ PasswordEncoder
 	9.2 第二步获取cookie信息与数据库进行比对，如果查询到对应信息，认证成功，可以登录
 	9.3 第二步是如何进行比对的，；浏览器->UsernamePasswordAuthenticationFilter->RemeberMeService->将token写入数据库DB
 	9.4 再次请求，RememberMeAuthenticationFilter->读取Cookie中的token——>TokenRepository->到数据库查找Token->UserDetailService
+	
+	
+### 实现微服务下的安全认证 ###
+1. 建立数据模型
+菜单表，角色表，用户表，角色菜单关系表(多对多)，用户角色关系表（多对多)
+
